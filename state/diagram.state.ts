@@ -2,6 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { AddDiagramAction, LoadDiagramsAction } from './diagram.actions';
 import { Diagram } from 'src/model/diagram';
 import { DiagramService } from 'src/app/shared/diagram.service';
+import { tap } from 'rxjs/operators';
 
 export class DiagramStateModel {
   public diagrams: Diagram[];
@@ -31,11 +32,12 @@ export class DiagramState {
   @Action(LoadDiagramsAction)
   load(ctx: StateContext<DiagramStateModel>, action: LoadDiagramsAction) {
     return this.diagramService.loadDiagrams(action.userId).pipe(
-      tap((result: { token: string }) => {
-        ctx.patchState({
-          token: result.token,
-          username: action.payload.username
-        });
+      tap(diagrams => {
+        null
+        // ctx.patchState({
+        //   diagrams: diagrams,
+        //   username: action.payload.username
+        // });
       })
     );
   }

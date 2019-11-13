@@ -1,1 +1,34 @@
-Welcome to this file hot reload
+
+<mat-toolbar color="primary">
+        <button mat-icon-button (click)="isSidenavExpanded = !isSidenavExpanded">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span fxFlex style="text-align: center;">Welcome to Praia!</span>
+        <button mat-icon-button >
+            <mat-icon>perm_identity</mat-icon>
+        </button>
+
+</mat-toolbar>
+
+<mat-sidenav-container autosize>
+    <mat-sidenav mode="side" opened>
+        <mat-nav-list class="dashboard">
+            <a  mat-list-item routerLink="/search"  routerLinkActive="active" >
+                <mat-icon mat-list-icon>search</mat-icon>
+                <p mat-line *ngIf="isSidenavExpanded">Grundstücke suchen</p>  
+            </a>
+            <a  mat-list-item routerLink="/profile"  routerLinkActive="active" >
+                <mat-icon mat-list-icon>account_circle</mat-icon>
+                <p mat-line *ngIf="isSidenavExpanded">Profil</p>  
+            </a>
+
+          
+                
+        </mat-nav-list>
+    </mat-sidenav>
+    
+    <mat-sidenav-content style="height: 100vh;">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

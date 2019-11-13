@@ -7,5 +7,5 @@ export class AddDiagramAction {
 
 export class LoadDiagramsAction {
   static readonly type = '[Diagram] Load diagrams';
-  constructor(public userId: String[]) { }
+  constructor(public userId: String) { }
 }

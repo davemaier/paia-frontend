@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map, tap } from 'rxjs/operators'
 import { Diagram } from 'src/model/diagram';
 import { JsonConvert } from 'json2typescript';
 
@@ -14,10 +14,11 @@ export class DiagramService {
   
   constructor(private http: HttpClient) { }
 
-  loadDiagrams(userId: String):Observable<Diagram>{
+  loadDiagrams(userId: String):any{
     let jsonConvert: JsonConvert = new JsonConvert();
-    return this.http.get(this.apiServer + "/diagrams").pipe(
-      map(diagrams => jsonConvert.deserializeObject(diagrams, Diagram))
+    return this.http.get(this.apiServer + "/diagrams?userId=bernd").pipe(
+      tap(diagrams => console.log(diagrams))
+      //map(diagrams => jsonConvert.deserializeObject(diagrams, Diagram))
     )
   }
   
